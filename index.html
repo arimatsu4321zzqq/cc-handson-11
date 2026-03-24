@@ -57,6 +57,14 @@
     .hero-inner {
       max-width: 900px;
       width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text {
+      min-width: 0;
     }
 
     .hero-label {
@@ -70,7 +78,7 @@
 
     .hero h1 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-size: clamp(3rem, 7vw, 6rem);
       font-weight: 800;
       line-height: 0.95;
       letter-spacing: -0.03em;
@@ -80,19 +88,66 @@
     .hero h1 .en {
       display: block;
       color: var(--muted);
-      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-size: clamp(1.1rem, 2.5vw, 1.8rem);
       font-weight: 700;
       letter-spacing: -0.01em;
       margin-top: 16px;
     }
 
     .hero-desc {
-      max-width: 520px;
       font-size: 1.05rem;
       color: var(--muted);
       font-weight: 300;
       border-top: 1px solid var(--border);
       padding-top: 28px;
+    }
+
+    /* Hero Photo */
+    .hero-photo {
+      width: 220px;
+      height: 280px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%);
+    }
+
+    /* placeholder shown when no real image */
+    .hero-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    .hero-photo-placeholder svg {
+      opacity: 0.4;
+    }
+
+    .hero-photo-placeholder span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 8px -8px -8px 8px;
+      border: 1px solid var(--border);
+      z-index: -1;
     }
 
     /* ── CONTENT ── */
@@ -182,6 +237,94 @@
       max-width: 680px;
     }
 
+    /* ── CONTACT ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-lead {
+      font-size: 1.8rem;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .contact-sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-field label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-field textarea {
+      height: 120px;
+    }
+
+    .btn-send {
+      margin-top: 8px;
+      padding: 16px 32px;
+      background-color: var(--accent);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: opacity 0.2s;
+    }
+
+    .btn-send:hover {
+      opacity: 0.85;
+    }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -206,6 +349,22 @@
       background-color: var(--accent);
     }
 
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo {
+        width: 160px;
+        height: 200px;
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
     @media (max-width: 600px) {
       .hero, main, footer {
         padding-left: 24px;
@@ -228,15 +387,27 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <p class="hero-label">Available for work — 2026</p>
-      <h1>
-        有松 小太郎
-        <span class="en">I build things<br>for the web.</span>
-      </h1>
-      <p class="hero-desc">
-        コードは手段、目的はユーザー体験。<br>
-        設計から実装まで、自分の手で完結させます。
-      </p>
+      <div class="hero-text">
+        <p class="hero-label">Available for work — 2026</p>
+        <h1>
+          有松 小太郎
+          <span class="en">I build things<br>for the web.</span>
+        </h1>
+        <p class="hero-desc">
+          コードは手段、目的はユーザー体験。<br>
+          設計から実装まで、自分の手で完結させます。
+        </p>
+      </div>
+      <figure class="hero-photo">
+        <!-- ご自身の写真を用意する場合: <img src="profile.jpg" alt="有松 小太郎"> に置き換えてください -->
+        <div class="hero-photo-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="18" r="10" stroke="#E8E8E8" stroke-width="1.5"/>
+            <path d="M6 42c0-9.941 8.059-18 18-18s18 8.059 18 18" stroke="#E8E8E8" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span>Photo</span>
+        </div>
+      </figure>
     </div>
   </section>
 
@@ -290,6 +461,37 @@
         派手さより、確かさ。速さより、正しさ。<br>
         そういうものを、作り続けたい。
       </p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>Contact</h2>
+      </div>
+      <div class="contact-layout">
+        <div>
+          <p class="contact-lead">一緒に、何かを<br>つくりませんか。</p>
+          <p class="contact-sub">
+            仕事のご相談、技術的な話、雑談でも。<br>
+            お気軽にどうぞ。
+          </p>
+        </div>
+        <form class="contact-form" onsubmit="return false;">
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="山田 太郎" autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="hello@example.com" autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="メッセージをどうぞ…"></textarea>
+          </div>
+          <button type="submit" class="btn-send">Send Message</button>
+        </form>
+      </div>
     </section>
   </main>
 
