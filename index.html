@@ -118,31 +118,7 @@
       filter: grayscale(20%);
     }
 
-    /* placeholder shown when no real image */
-    .hero-photo-placeholder {
-      width: 100%;
-      height: 100%;
-      background-color: var(--surface);
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: var(--muted);
-    }
-
-    .hero-photo-placeholder svg {
-      opacity: 0.4;
-    }
-
-    .hero-photo-placeholder span {
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    .hero-photo::after {
+.hero-photo::after {
       content: '';
       position: absolute;
       inset: 8px -8px -8px 8px;
@@ -582,14 +558,12 @@
         </p>
       </div>
       <figure class="hero-photo">
-        <!-- ご自身の写真を用意する場合: <img src="profile.jpg" alt="有松 小太郎"> に置き換えてください -->
-        <div class="hero-photo-placeholder">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="18" r="10" stroke="#E8E8E8" stroke-width="1.5"/>
-            <path d="M6 42c0-9.941 8.059-18 18-18s18 8.059 18 18" stroke="#E8E8E8" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <span>Photo</span>
-        </div>
+        <img
+          src="https://api.dicebear.com/9.x/lorelei/svg?seed=kotaro-arimatsu&backgroundColor=171717&radius=0"
+          alt="有松 小太郎"
+          width="220"
+          height="280"
+        >
       </figure>
     </div>
   </section>
