@@ -3,120 +3,297 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>自己紹介</title>
+  <title>有松 小太郎 — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <style>
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    :root {
+      --accent: #FF5C35;
+      --bg: #0E0E0E;
+      --surface: #171717;
+      --border: #2A2A2A;
+      --text: #E8E8E8;
+      --muted: #6B6B6B;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-      line-height: 1.8;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header {
-      background-color: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 80px 48px;
+      position: relative;
+      overflow: hidden;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 8px;
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(255, 92, 53, 0.12) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    header p {
-      font-size: 1.1rem;
-      color: #bdc3c7;
+    .hero-inner {
+      max-width: 900px;
+      width: 100%;
     }
 
+    .hero-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 .en {
+      display: block;
+      color: var(--muted);
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: 16px;
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-weight: 300;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+
+    /* ── CONTENT ── */
     main {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px 120px;
     }
 
-    section {
-      background-color: white;
-      border-radius: 8px;
-      padding: 32px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    .section {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
     }
 
-    section h2 {
-      font-size: 1.3rem;
-      color: #2c3e50;
-      border-left: 4px solid #2c3e50;
-      padding-left: 12px;
-      margin-bottom: 16px;
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 48px;
     }
 
-    section p {
-      color: #555;
+    .section-num {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.1em;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
 
-    ul li {
-      padding: 6px 0;
-      color: #555;
+    /* Profile */
+    .profile-text {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #C0C0C0;
+      max-width: 680px;
+      line-height: 1.9;
     }
 
-    ul li::before {
-      content: "• ";
-      color: #2c3e50;
-      font-weight: bold;
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      background-color: var(--border);
+      border: 1px solid var(--border);
     }
 
+    .skill-item {
+      background-color: var(--surface);
+      padding: 28px 32px;
+      transition: background-color 0.2s;
+    }
+
+    .skill-item:hover {
+      background-color: #1F1F1F;
+    }
+
+    .skill-category {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .skill-name {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* Philosophy */
+    .philosophy-text {
+      font-size: 1.4rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #C0C0C0;
+      border-left: 2px solid var(--accent);
+      padding-left: 32px;
+      max-width: 680px;
+    }
+
+    /* ── FOOTER ── */
     footer {
-      text-align: center;
-      padding: 24px;
-      color: #999;
-      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .hero, main, footer {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>有松 小太郎</h1>
-    <p>Software Engineer / Full-Stack Developer</p>
-  </header>
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">Portfolio — 2026</p>
+      <h1>
+        有松 小太郎
+        <span class="en">Full-Stack Engineer</span>
+      </h1>
+      <p class="hero-desc">
+        フロントエンドからインフラまで一貫して担当。スピードと品質を両立したプロダクト開発を追求しています。
+      </p>
+    </div>
+  </section>
 
   <main>
-    <section>
-      <h2>Profile</h2>
-      <p>Webアプリケーション開発を専門とするフルスタックエンジニアです。フロントエンドからバックエンド・インフラまで一貫して担当し、ビジネス要件を技術で確実に実現することを強みとしています。スピードと品質を両立したプロダクト開発に注力しており、スタートアップから大規模サービスまで幅広い開発経験を有します。</p>
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>Profile</h2>
+      </div>
+      <p class="profile-text">
+        Webアプリケーション開発を専門とするフルスタックエンジニアです。フロントエンドからバックエンド・インフラまで一貫して担当し、ビジネス要件を技術で確実に実現することを強みとしています。スタートアップから大規模サービスまで幅広い開発経験を有します。
+      </p>
     </section>
 
-    <section>
-      <h2>Skills</h2>
-      <ul>
-        <li>フロントエンド開発 — React / TypeScript / Next.js</li>
-        <li>バックエンド開発 — Python / FastAPI / Node.js</li>
-        <li>データベース設計・運用 — PostgreSQL / MySQL / Redis</li>
-        <li>インフラ構築 — AWS / Docker / CI/CD</li>
-        <li>チームリード・技術選定・コードレビュー</li>
-      </ul>
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <p class="skill-category">Frontend</p>
+          <p class="skill-name">React / TypeScript / Next.js</p>
+        </div>
+        <div class="skill-item">
+          <p class="skill-category">Backend</p>
+          <p class="skill-name">Python / FastAPI / Node.js</p>
+        </div>
+        <div class="skill-item">
+          <p class="skill-category">Database</p>
+          <p class="skill-name">PostgreSQL / MySQL / Redis</p>
+        </div>
+        <div class="skill-item">
+          <p class="skill-category">Infrastructure</p>
+          <p class="skill-name">AWS / Docker / CI&thinsp;CD</p>
+        </div>
+        <div class="skill-item">
+          <p class="skill-category">Leadership</p>
+          <p class="skill-name">Tech Lead / Code Review / Architecture</p>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Philosophy</h2>
-      <p>「保守性の高いコードが、長期的な価値を生む」という信念のもと、設計段階から品質を意識した開発を実践しています。チームの生産性向上にも積極的に貢献し、明確なコミュニケーションと迅速なフィードバックを通じて、プロジェクト全体の成功を追求します。</p>
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>Philosophy</h2>
+      </div>
+      <p class="philosophy-text">
+        「保守性の高いコードが、長期的な価値を生む」という信念のもと、設計段階から品質を意識した開発を実践しています。明確なコミュニケーションと迅速なフィードバックを通じて、プロジェクト全体の成功を追求します。
+      </p>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2026 有松小太郎</p>
+    <div class="footer-dot"></div>
+    <p>Software Engineer</p>
   </footer>
 
 </body>
